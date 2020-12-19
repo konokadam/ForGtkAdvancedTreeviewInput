@@ -190,6 +190,17 @@ contains
         pixbuf_input = hl_gdk_pixbuf_new("input.png", width=15_c_int, aspect=TRUE)
 
         !!!Generate input items
+        !! Row indexes should be given for the tree to be generated
+        !  Note that index starts with 0 for C (GTK) not 1
+        !  Input group 1 row: [0]
+        !  Input 1.1 row: [0,0]
+        !  Input 1.2 row: [0,1]
+        !  Input group 2 row: [1]
+        !  Input 1.1 row: [1,0]
+        !  Input 1.2 row: [1,1]
+        !  Input group 3 row: [2]
+        !  Input 1.1 row: [2,0]
+        !  Input 1.2 row: [2,1]
         allocate(item(3))
         !!!Input group 1
 !        call group_or_input(item(1)%p, GROUP_TYPE_, [0], name="Input group 1", pixbuf=pixbuf_group)
