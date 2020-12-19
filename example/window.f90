@@ -210,7 +210,7 @@ contains
         !!!Input group 2
 !        call group_or_input(item(2)%p, GROUP_TYPE_, [1], name="Input group 2", pixbuf=pixbuf_group)
         item(2)%p => group_or_input(GROUP_TYPE_, [1], name="Input group 2", pixbuf=pixbuf_group)
-        !! Input group 1 inputs
+        !! Input group 2 inputs
         select type(p => item(2)%p)
             type is(group_type)
                 allocate(p%item(2))
@@ -226,7 +226,7 @@ contains
         !!!Input group 3
 !        call group_or_input(item(3)%p, GROUP_TYPE_, [2], name="Input group 3", pixbuf=pixbuf_group)
         item(3)%p => group_or_input(GROUP_TYPE_, [2], name="Input group 3", pixbuf=pixbuf_group)
-        !! Input group 1 inputs
+        !! Input group 3 inputs
         select type(p => item(3)%p)
             type is(group_type)
                 allocate(p%item(2))
