@@ -390,19 +390,8 @@ contains
 
         row = row_from_path(path)
 
-        !    read(fpath, *) irow
-        !
-        pcol = g_object_get_data(renderer, "column-number"//c_null_char)
-        call c_f_pointer(pcol, icol)
-        !
-        list = g_object_get_data(renderer, "view"//c_null_char)
-        !
         state = c_f_logical(gtk_cell_renderer_toggle_get_active(renderer))
-        !
-        !    print *, "Changed state in row", irow, " to ", .not. state
-        !
-        !    call hl_gtk_listn_set_cell(list, irow, icol, &
-            !         & logvalue= .not. state)
+
         call hl_gtk_tree_set_cell(treeview_input, row=row, col=COL_CHECK_INPUT, &
             & logvalue= .not. state)
 
@@ -437,10 +426,7 @@ contains
 
         type(c_ptr), value :: renderer, path, iter, gdata
 
-        ! Basic callback to report what's called
-
         character(len=200) :: fpath
-
         character(c_char) :: svalue
 
         call c_f_string(path, fpath)
@@ -473,7 +459,7 @@ contains
     subroutine combo_edited(renderer, path, text, gdata) bind(c)
 
         type(c_ptr), value :: renderer, path, text, gdata
-        ! Basic callback to report what's called
+
         character(len=200) :: ftext
         integer(c_int), allocatable :: row(:)
         character(50) :: tag
@@ -495,7 +481,7 @@ contains
     subroutine spin_edited(renderer, path, text, gdata) bind(c)
 
         type(c_ptr), value :: renderer, path, text, gdata
-        ! Basic callback to report what's called
+
         character(len=200) :: fpath, ftext
         integer(c_int), allocatable :: row(:)
         character(50) :: tag
@@ -514,68 +500,10 @@ contains
 
     end subroutine spin_edited
 
-    subroutine toggled_button(renderer, path, gdata) bind(c)
-
-        type(c_ptr), value :: renderer, path, gdata
-        ! Basic callback to report what's called
-        character(len=200) :: fpath, ftext
-        integer(c_int), allocatable :: row(:)
-
-        integer(kind=c_int) :: isel
-        character(len=120), dimension(:), allocatable :: chfile
-        character(len=30), dimension(2) :: filters
-        character(len=30), dimension(2) :: filtnames
-        character(len=200) :: inln
-        integer :: ios
-        integer :: idxs
-        character(len=120) :: filename=''
-
-        call c_f_string(path, fpath)
-
-        row = row_from_path(path)
-
-        filters(1) = "*.txt,*.lis"
-        filters(2) = "*.f90"
-        filtnames(1) = "Text files"
-        filtnames(2) = "Fortran code"
-
-        isel = hl_gtk_file_chooser_show(chfile, create=FALSE,&
-            & title="Select input file"//c_null_char, filter=filters, &
-            & filter_name=filtnames, wsize=(/ 600_c_int, 400_c_int /), &
-            & edit_filters=TRUE, &
-            & parent=gdata, all=TRUE)
-
-        if (isel == FALSE) return   ! No selection made
-
-        filename = chfile(1)
-        deallocate(chfile)
-
-        call hl_gtk_tree_set_cell(treeview_input, row=row, col=COL_TEXT_INPUT, &
-            & svalue=trim(filename)//c_null_char)
-
-        ! We manually reset the changed flag as the text box signal handler sets it.
-
-        !        file_is_changed = .FALSE.
-        !        call gtk_widget_set_sensitive(sabut, TRUE)
-        !        call gtk_widget_set_sensitive(sbut, FALSE)
-
-    end subroutine toggled_button
-
     subroutine radio_toggled(renderer, path, gdata) bind(c)
+    
         type(c_ptr), value :: renderer, path, gdata
 
-        ! Default callback for a toggle button in a list
-        !
-        ! RENDERER: c_ptr: required: The renderer which sent the signal
-        ! PATH: c_ptr: required: The path at which to insert
-        ! GDATA: c_ptr: required: User data, Not used.
-        !
-        ! The column number is passed via the "column-number" gobject data value.
-        ! The treeview containing the cell is passed via the "view" gobject
-        ! data value.
-        ! The row number is passed as a string in the PATH argument.
-        ! This routine is not normally called by the application developer.
-        !-
         character(len=200) :: fpath, fpath1
         integer(kind=c_int), allocatable, dimension(:) :: irow, jrow
         integer :: i, n
