@@ -9,6 +9,7 @@ module params
 
     character(20) :: input2s(2)
 
+    !!!Input tags
     character(10), parameter :: INPUT11_ ="input11"
     character(10), parameter :: INPUT12_ ="input12"
     character(10), parameter :: INPUT21_ ="input21"
