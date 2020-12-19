@@ -214,11 +214,11 @@ contains
         select type(p => item(2)%p)
             type is(group_type)
                 allocate(p%item(2))
-                !  Text input
+                !  Radio input
 !                call group_or_input(p%item(1)%p, INPUT_TYPE_, [1,0], name="input 2.1", &
                 p%item(1)%p => group_or_input(INPUT_TYPE_, [1,0], builder, tag=INPUT21_, name="input 2.1", &
                 & pixbuf=pixbuf_input, renderer_type=COL_RADIO_INPUT)
-                !  Spin input
+                !  Radio input
 !                call group_or_input(p%item(2)%p, INPUT_TYPE_, [1,1], name="input 2.2", &
                 p%item(2)%p => group_or_input(INPUT_TYPE_, [1,1], builder, tag=INPUT22_, name="input 2.2", &
                 & pixbuf=pixbuf_input, renderer_type=COL_RADIO_INPUT)
@@ -230,11 +230,11 @@ contains
         select type(p => item(3)%p)
             type is(group_type)
                 allocate(p%item(2))
-                !  Text input
+                !  Spin input
 !                call group_or_input(p%item(1)%p, INPUT_TYPE_, [2,0], name="input 3.1", &
                 p%item(1)%p => group_or_input(INPUT_TYPE_, [2,0], builder, tag=INPUT31_, name="input 3.1", &
                 & pixbuf=pixbuf_input, renderer_type=COL_SPIN_INPUT)
-                !  Spin input
+                !  Combo input
 !                call group_or_input(p%item(2)%p, INPUT_TYPE_, [2,1], name="input 3.2", &
                 p%item(2)%p => group_or_input(INPUT_TYPE_, [2,1], builder, tag=INPUT32_, name="input 3.2", &
                 & pixbuf=pixbuf_input, renderer_type=COL_COMBO_INPUT, list_combo=["combo1","combo2"])
@@ -264,7 +264,6 @@ program gui_main
     use :: gtk, only: gtk_init, gtk_main
     use :: handlers
 
-
     implicit none
 
     call gtk_init()
@@ -274,8 +273,6 @@ program gui_main
     call show_window()
 
     call gtk_main()
-
-    close(6)
 
 end program gui_main
 
