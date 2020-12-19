@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.36.0 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkAdjustment" id="adjustment_cell_renderer_spin">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkListStore" id="liststore_cell_renderer_combo">
+    <columns>
+      <!-- column-name COL_CC_COMBO_LIST -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">combo 1</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">combo 2</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">combo 3</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkTreeStore" id="treestore_input">
+    <columns>
+      <!-- column-name COL_PIXBUF_NAME -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name COL_TEXT_NAME -->
+      <column type="gchararray"/>
+      <!-- column-name COL_TEXT_INPUT -->
+      <column type="gchararray"/>
+      <!-- column-name COL_COMBO_INPUT -->
+      <column type="gchararray"/>
+      <!-- column-name COL_SPIN_INPUT -->
+      <column type="gint"/>
+      <!-- column-name COL_CHECK_INPUT -->
+      <column type="gboolean"/>
+      <!-- column-name COL_RADIO_INPUT -->
+      <column type="gboolean"/>
+      <!-- column-name COL_PROGRESS_INPUT -->
+      <column type="gdouble"/>
+      <!-- column-name COL_PIXBUF_INPUT -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name COL_VISIBLE_TEXT -->
+      <column type="gboolean"/>
+      <!-- column-name COL_VISIBLE_COMBO -->
+      <column type="gboolean"/>
+      <!-- column-name COL_VISIBLE_SPIN -->
+      <column type="gboolean"/>
+      <!-- column-name COL_VISIBLE_CHECK -->
+      <column type="gboolean"/>
+      <!-- column-name COL_VISIBLE_RADIO -->
+      <column type="gboolean"/>
+      <!-- column-name COL_VISIBLE_PROGRESS -->
+      <column type="gboolean"/>
+      <!-- column-name COL_VISIBLE_PIXBUF -->
+      <column type="gboolean"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="window">
+    <property name="width_request">500</property>
+    <property name="height_request">500</property>
+    <property name="can_focus">False</property>
+    <signal name="delete-event" handler="delete-event_window" swapped="no"/>
+    <signal name="destroy-event" handler="destroy-event_window" swapped="no"/>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkButtonBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="layout_style">start</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">+</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="button_expandall_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">-</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="button_collapseall_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <property name="propagate_natural_width">True</property>
+            <child>
+              <object class="GtkTreeView" id="treeview_input">
+                <property name="width_request">500</property>
+                <property name="height_request">500</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hscroll_policy">natural</property>
+                <property name="vscroll_policy">natural</property>
+                <property name="model">treestore_input</property>
+                <property name="enable_grid_lines">both</property>
+                <property name="enable_tree_lines">True</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection"/>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">PARAMETER</property>
+                    <child>
+                      <object class="GtkCellRendererPixbuf" id="cell_renderer_pixbuf_name"/>
+                      <attributes>
+                        <attribute name="pixbuf">0</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererText" id="cell_renderer_text_name"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">INPUT</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="cell_renderer_text_input">
+                        <property name="xalign">0</property>
+                        <property name="editable">True</property>
+                        <signal name="edited" handler="text_edited" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">9</attribute>
+                        <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererCombo" id="cell_renderer_combo_input">
+                        <property name="xalign">0</property>
+                        <property name="editable">True</property>
+                        <property name="has_entry">False</property>
+                        <property name="model">liststore_cell_renderer_combo</property>
+                        <signal name="changed" handler="combo_changed" swapped="no"/>
+                        <signal name="edited" handler="combo_edited" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">10</attribute>
+                        <attribute name="text">3</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererSpin" id="cell_renderer_spin_input">
+                        <property name="xalign">0</property>
+                        <property name="editable">True</property>
+                        <property name="adjustment">adjustment_cell_renderer_spin</property>
+                        <property name="climb_rate">1</property>
+                        <signal name="edited" handler="spin_edited" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">11</attribute>
+                        <attribute name="text">4</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererToggle" id="cell_renderer_check_input">
+                        <property name="xalign">0</property>
+                        <signal name="toggled" handler="check_toggled" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">12</attribute>
+                        <attribute name="active">5</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererToggle" id="cell_renderer_radio_input">
+                        <property name="xalign">0</property>
+                        <property name="radio">True</property>
+                        <signal name="toggled" handler="radio_toggled" swapped="no"/>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">13</attribute>
+                        <attribute name="active">6</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererProgress" id="cell_renderer_progress_input">
+                        <property name="xalign">0</property>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">14</attribute>
+                        <attribute name="text">7</attribute>
+                        <attribute name="value">7</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererPixbuf" id="cell_renderer_pixbuf_input">
+                        <property name="xalign">0</property>
+                      </object>
+                      <attributes>
+                        <attribute name="visible">15</attribute>
+                        <attribute name="pixbuf">8</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="tooltip_text" translatable="yes">Generated by H. E. Konoman</property>
+        <property name="title" translatable="yes">Advanced Treeview Input</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
