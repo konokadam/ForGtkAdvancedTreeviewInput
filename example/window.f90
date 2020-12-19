@@ -19,6 +19,10 @@
 ! this program; see the files COPYING3 and COPYING.RUNTIME respectively.
 ! If not, see <http://www.gnu.org/licenses/>.
 
+
+!!!H. E. Konokman
+!!
+!  19.12.2020
 module handlers
 
     use iso_c_binding
