@@ -10,17 +10,27 @@ module params
     character(20) :: input2s(2)
 
     !!!Input tags
-    character(10), parameter :: INPUT11_ ="input11"
-    character(10), parameter :: INPUT12_ ="input12"
-    character(10), parameter :: INPUT21_ ="input21"
-    character(10), parameter :: INPUT22_ ="input22"
-    character(10), parameter :: INPUT31_ ="input31"
-    character(10), parameter :: INPUT32_ ="input32"
+    character(10), parameter :: INPUT11_ = "input11"
+    character(10), parameter :: INPUT12_ = "input12"
+    character(10), parameter :: INPUT21_ = "input21"
+    character(10), parameter :: INPUT22_ = "input22"
+    character(10), parameter :: INPUT31_ = "input31"
+    character(10), parameter :: INPUT32_ = "input32"
 
 contains
 
     !!!Procedure to get input from treeview by tag
     subroutine match_tag_with_input_(tag, input)
+    !!!You can use tag_input_match module, which can shorten this subroutine.
+    !! i.e. input11 = input
+    !       input12 = input
+    !       select case(tag)
+    !          case(INPUT11_)
+    !             input11 = input
+    !          case(INPUT12_)
+    !             input12 = input
+    !          ...
+    !  Thanks to operator overloading :)
 
         character(*), intent(in) :: tag
         class(*), intent(in) :: input
